@@ -18,7 +18,8 @@ var port = 8080;
 var path = '';
 var clientId = 'browser-client' + parseInt( Math.random() * 100, 10);
 
-var topic = 'devfest/bdm/#';
+var topicSUB = 'devfest/bdm/#';
+var topicPUB = 'devfest/bdm/js';
 var useTLS = false;
 
 //Create a client instance
@@ -30,34 +31,38 @@ client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
 
 // connect the client
-log("MQTT client.connect()");
+console.log("MQTT client.connect()");
 client.connect({onSuccess:onConnect});
 
 
 // called when the client connects
 function onConnect() {
-  // Once a connection has been made, make a subscription and send a message.
-  log("onConnect");
-  //client.subscribe("World");
-  client.subscribe(topic, {qos: 0});
-  
-  message = new Paho.MQTT.Message("Hello");
-  //message.destinationName = "World";
-  message.destinationName = 'devfest/bdm/welcome';
-  
-  client.send(message);
+	// Once a connection has been made, make a subscription and send a message.
+    setStatus("Connected (event 'onConnect')" )
+	
+	//client.subscribe("World");
+	client.subscribe(topicSUB, {qos: 0});
+
+/*	
+	message = new Paho.MQTT.Message("JS client connected");
+	//message.destinationName = "World";
+	message.destinationName = topicPUB ;
+	client.send(message);
+*/
 }
 
 // called when the client loses its connection
 function onConnectionLost(responseObject) {
   if (responseObject.errorCode !== 0) {
-    log("onConnectionLost:"+responseObject.errorMessage);
+    //log("onConnectionLost:"+responseObject.errorMessage);
+    setStatus("onConnectionLost:"+responseObject.errorMessage)
   }
 }
 
 // called when a message arrives
 function onMessageArrived(message) {
-  log("onMessageArrived:"+ "[topic:"+message.destinationName+"] " + message.payloadString);
+  //log("onMessageArrived:"+ "["+message.destinationName+"] " + message.payloadString);
+  log( "["+message.destinationName+"] : " + message.payloadString);
 }
 
 function log(txt) {
@@ -77,6 +82,9 @@ function publish() {
 	message.destinationName = topic;	  
 	client.send(message);
 }
+function setStatus(txt) {
+	document.getElementById("status").value = txt ;
+}
 /*
  * Message structure : 
  * topic   : message.destinationName
@@ -85,26 +93,42 @@ function publish() {
  */
 </script>
 </head>
+
 <body>
 <h1>MQTT WebSocket test</h1>
+<a href="index.html" >Back to index.html</a>
+<br><br>
+Status : <input id="status" type="text" style="width: 300px" value="" />
+<br>
+SUB topic : <input id="subTopic" type="text" style="width: 300px" value="" />
+
 <table border="1">
-<tr style="font-size: x-large; font-weight: bold; "><td>Logging</td><td>Publish</td></tr>
+<tr style="font-size: x-large; font-weight: bold; ">
+<td>Subscribe (event 'onMessageArrived')</td>
+<td>Publish</td></tr>
 <tr>
 
 <td>
-<textarea id="log" rows="20" cols="60">
+<textarea id="log" rows="20" cols="60" spellcheck="false">
 </textarea>
 </td>
 
 
 <td>
-Message : <input id="message" type="text" value=""/>
+Message : <input id="message" type="text" value="Hello JS"/>
 <br><br>
-Topic : &nbsp; &nbsp; <input id="topic" type="text" value="devfest/bdm/javascript" />
+Topic : &nbsp; &nbsp; <input id="topic" type="text" value="" />
 <br><br>
 <button onclick="publish();">Publish</button>
 </td>
 </tr>
 </table>
+
 </body>
+
+<script>
+document.getElementById("topic").value = topicPUB ;
+document.getElementById("subTopic").value = topicSUB ;
+</script>
+
 </html>
