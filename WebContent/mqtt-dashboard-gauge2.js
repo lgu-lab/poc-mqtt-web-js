@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Gauge example</title>
-<script type="text/javascript" src="libs/gauge.min.js"></script>
-
-</head>
-
-<body>
-<h1>Gauge example</h1>
-<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
-<br><br>
-<button onclick="gauge.set(20)" >20</button>
-<button onclick="gauge.set(40)" >40</button>
-</body>
-
-<script type="text/javascript">
-var opts = {
+var gauge2_opts = {
   angle: 0.15, // The span of the gauge arc
   lineWidth: 0.44, // The line thickness
   radiusScale: 1, // Relative radius
@@ -46,14 +28,9 @@ var opts = {
 	  fractionDigits: 0  // Optional: Numerical precision. 0=round off.
 	},
 };
-var target = document.getElementById('myCanvas'); // your canvas element
-var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-gauge.maxValue = 100; // set max gauge value
-gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
-gauge.animationSpeed = 10; // set animation speed (32 is default value) min is faster
-gauge.set(60); // set actual value
-
-
-</script>
-
-</html>
+var gauge2_canvas = document.getElementById('gauge2'); // your canvas element
+var gauge2 = new Gauge(gauge2_canvas).setOptions(gauge2_opts); // create the gauge!
+gauge2.maxValue = 100; // set max gauge value
+gauge2.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+gauge2.animationSpeed = 10; // set animation speed (32 is default value) min is faster
+gauge2.set(0); // set actual value

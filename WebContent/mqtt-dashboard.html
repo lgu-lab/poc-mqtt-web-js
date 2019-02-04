@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Gauge example</title>
+<script type="text/javascript" src="libs/gauge.min.js"></script>
+
+</head>
+
+<body>
+<h1>MQTT dashboard</h1>
+<a href="index.html" >Back to index.html</a>
+<br><br>
+<table>
+<tr>
+<td align="center">Temperature</td>
+<td align="center">Humidity</td>
+</tr>
+<tr>
+<td><canvas id="gauge1" width="200" height="100" style="border:1px solid #000000;" ></canvas></td>
+<td><canvas id="gauge2" width="200" height="100" style="border:1px solid #000000;" ></canvas></td>
+</tr>
+<tr>
+<td align="center">v1</td>
+<td align="center">v2</td>
+</tr>
+
+</table>
+</body>
+<script type="text/javascript" src="mqtt-dashboard-gauge1.js"></script>
+<script type="text/javascript" src="mqtt-dashboard-gauge2.js"></script>
+</html>
