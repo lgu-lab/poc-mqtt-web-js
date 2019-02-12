@@ -4,7 +4,7 @@ var path = '';
 var clientId = 'browser-client' + parseInt( Math.random() * 100, 10);
 
 var topicSUB = 'devfest/bdm/#';
-var topicPUB = 'devfest/bdm/js';
+var topicPUB = 'devfest/bdm/door/command';
 var useTLS = false;
 
 //Create a client instance
@@ -47,5 +47,8 @@ function onMessageArrived(message) {
   	else if ( message.destinationName == "devfest/bdm/humidity") {
   		document.getElementById("val2").value = message.payloadString ;
   		gauge2.set(message.payloadString);
+  	}
+  	else if ( message.destinationName == "devfest/bdm/door/state") {
+  		document.getElementById("doorState").value = message.payloadString ;
   	}
 }
