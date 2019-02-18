@@ -59,5 +59,11 @@ function onMessageArrived(message) {
   	}
   	else if ( message.destinationName == "devfest/bdm/door/state") {
   		document.getElementById("doorState").value = message.payloadString ;
+  		if ( message.payloadString == "O" || message.payloadString == "o" ) {
+  	  		document.getElementById("door-img").src="./img/door-open.png";
+  		}
+  		if ( message.payloadString == "C" || message.payloadString == "c" ) {
+  	  		document.getElementById("door-img").src="./img/door-closed.png";
+  		}
   	}
 }
