@@ -10,10 +10,10 @@ var gauge2_opts = {
   limitMax: false,     // If false, max value increases automatically if value > maxValue
   limitMin: false,     // If true, the min value of the gauge will be fixed
 // colorStart: '#6FADCF',   // Colors
- colorStart: '#FF0000', // Test LGU
+  colorStart: '#0000FF', // BLUE
   
 //  colorStop: '#8FC0DA',    // just experiment with them
-  colorStop: '#FF0000',    // Left part
+  colorStop: '#0000FF',    // Left part : BLUE
   
   strokeColor: '#E0E0E0',  // to see which ones work best for you
 //  strokeColor: '#FF0000',  // Right part
