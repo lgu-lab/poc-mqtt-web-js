@@ -1,6 +1,15 @@
-var host = 'test.mosquitto.org';
-var port = 8080;
-var path = '';
+//---------- MQTT SERVER CONFIG
+
+//var host = 'test.mosquitto.org';
+//var port = 8080;
+//var path = '';
+
+var host = 'iot.eclipse.org';
+var port = 80;
+var path = '/ws';
+
+//---------- END OF MQTT SERVER CONFIG
+
 var clientId = 'browser-client' + parseInt( Math.random() * 100, 10);
 
 var topicSUB = 'devfest/bdm/#';
